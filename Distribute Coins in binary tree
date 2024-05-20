@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int distributeCoins(TreeNode* root) {
+        int totalMoves = 0;
+function<int(TreeNode*)> dfs = [&](TreeNode* node) -> int {
+if (!node) {
+                return 0;
+            }
+int leftMoves = dfs(node->left);
+            int rightMoves = dfs(node->right);
+totalMoves += abs(leftMoves) + abs(rightMoves);
+return leftMoves + rightMoves + node->val - 1;
+        };
+dfs(root);
+return totalMoves;
+    }
+};
