@@ -1,0 +1,23 @@
+#include<queue>
+class Solution {
+public:
+    int lastStoneWeight(vector<int>& stones) {
+        priority_queue<int> freq;
+     for(int i=0;i<stones.size();i++) 
+     {freq.push(stones[i]);}  
+     while(freq.size()>1)
+     {
+        int x=freq.top();
+        freq.pop();
+        int y=freq.top();
+        freq.pop();
+        //now priority queue is empty. We push in elements only if there is a differenec.. else it is empty and we return 0 coz size is 0
+        if(x>y)
+        //return (x-y);
+        freq.push(x-y);
+        if(freq.size()==0)
+        return 0;
+     }
+     return freq.top();
+    }
+};
